@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>¡Feliz Día de las Madres!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos CSS con efectos hover y animaciones */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .gift-box {
+            width: 200px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+            margin-top: 20px;
+        }
+
+        .gift-box:hover {
+            transform: scale(1.1) rotate(-5deg);
+            filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.3));
+        }
+
+        .coupon {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+            transform: scale(0);
+            animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            80% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .coupon:before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            bottom: -10px;
+            left: -10px;
+            z-index: -1;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            filter: blur(20px);
+            opacity: 0.7;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            border-radius: 50%;
+            animation: confetti 5s ease-in-out infinite;
+        }
+
+        @keyframes confetti {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        h1 {
+            color: #d23669;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .coupon-code {
+            background: white;
+            color: #d23669;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 20px 0;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: rotate(-2deg);
+        }
+
+        .btn {
+            background: #d23669;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(210, 54, 105, 0.4);
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background: #a51c4a;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(210, 54, 105, 0.6);
+        }
+
+        .ateez-logo {
+            width: 120px;
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+
+        /* Estilos del carrusel para móvil */
+        .gallery-container {
+            position: relative;
+            width: 70%;
+            margin: 15px auto;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-slider {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 100%;
+        }
+
+        .slider-inner {
+            display: flex;
+            width: 100%;
+        }
+
+        .slider-inner img {
+            min-width: 100%;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(210, 54, 105, 0.7);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 10;
+            transition: all 0.3s;
+        }
+
+        .slider-btn:hover {
+            background: rgba(210, 54, 105, 1);
+        }
+
+        .prev {
+            left: 5px;
+        }
+
+        .next {
+            right: 5px;
+        }
+
+        .message {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="title">¡Feliz Día de las Madres!</h1>
+
+        <!-- Carrusel manual -->
+        <div class="gallery-container">
+            <div class="gallery-slider">
+                <div class="slider-inner">
+                    <img src="img/trillizos.jpg" alt="ATEEZ Foto 1">
+                    <img src="img/elagance1.jpg" alt="ATEEZ Foto 2">
+                    <img src="img/boda.jpg" alt="ATEEZ Foto 3">
+                    <img src="img/ajales.jpg" alt="ATEEZ Foto 4">
+                    <img src="img/pan.jpg" alt="ATEEZ Foto 5">
+                    <img src="img/jajaj.jpg" alt="ATEEZ Foto 6">
+                    <img src="img/elegance3.jpg" alt="ATEEZ Foto 7">
+                    <img src="img/panzota.jpg" alt="ATEEZ Foto 8">
+                    <img src="img/cabelloLargo.jpg" alt="ATEEZ Foto 9">
+                    <img src="img/cristoRey.jpg" alt="ATEEZ Foto 10">
+                    <img src="img/rockstar.jpg" alt="ATEEZ Foto 11">
+                    <img src="img/terreno.jpg" alt="ATEEZ Foto 12">
+                </div>
+            </div>
+            <button class="slider-btn prev" onclick="moveSlide(-1)">❮</button>
+            <button class="slider-btn next" onclick="moveSlide(1)">❯</button>
+        </div>
+
+        <p class="message" id="subtitle">Haz clic en la caja de regalo para descubrir tu sorpresa especial</p>
+
+        <img src="img/caja-removebg-preview.png" alt="Caja de Regalo" class="gift-box" id="giftBox">
+
+        <div class="coupon" id="coupon">
+            <h2>¡Felicidades!</h2>
+            <p class="message">Has ganado un cupón exclusivo de <strong>$850 pesos de descuento</strong></p>
+            <img src="img/ateez.png" alt="ATEEZ" class="ateez-logo">
+            <p class="message">para el concierto de ATEEZ como regalo especial para el Día de las Madres.</p>
+
+            <div class="coupon-code">CODIGO: LA QUIERO MUCHO AMA</div>
+
+            <h5 class="message">Válido antes de que me arrepienta*</h5>
+
+            <button class="btn" id="claimBtn">¡Quiero mi descuento!</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript para la interacción del regalo
+        const giftBox = document.getElementById('giftBox');
+        const coupon = document.getElementById('coupon');
+        const title = document.getElementById('title');
+        const subtitle = document.getElementById('subtitle');
+        const claimBtn = document.getElementById('claimBtn');
+
+        giftBox.addEventListener('click', function () {
+            // Oculta la caja y muestra el cupón
+            giftBox.style.display = 'none';
+            coupon.style.display = 'block';
+            title.textContent = '¡Sorpresa Especial!';
+            subtitle.textContent = 'Tu regalo del Día de las Madres';
+
+            // Crea efecto de confeti
+            createConfetti();
+        });
+
+        claimBtn.addEventListener('click', function () {
+            alert('¡Gracias! Serás redirigido a la página de compra de boletos para aplicar tu descuento.');
+            // Aquí puedes agregar la redirección a la página de compra
+            // window.location.href = 'URL_DE_COMPRA';
+        });
+
+        function createConfetti() {
+            const colors = ['#ff9a9e', '#fad0c4', '#a18cd1', '#fbc2eb', '#ffecd2', '#fcb69f'];
+
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = -10 + 'px';
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = confetti.style.width;
+                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                document.body.appendChild(confetti);
+
+                // Eliminar el confeti después de la animación
+                setTimeout(() => {
+                    confetti.remove();
+                }, 8000);
+            }
+        }
+
+        // JavaScript para el carrusel manual
+        let currentSlide = 0;
+        const slider = document.querySelector('.gallery-slider');
+        const slides = document.querySelectorAll('.slider-inner img');
+        const totalSlides = slides.length;
+
+        function moveSlide(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+        // Opcional: Toques para móvil
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        const sliderContainer = document.querySelector('.gallery-container');
+        
+        sliderContainer.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, {passive: true});
+        
+        sliderContainer.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, {passive: true});
+        
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                moveSlide(1); // Deslizar izquierda
+            }
+            if (touchEndX > touchStartX + 50) {
+                moveSlide(-1); // Deslizar derecha
+            }
+        }
+    </script>
+</body>
+</html>
